@@ -9,7 +9,18 @@ public class AccountTest {
     @Test
     public void depositAnAmountToIncreaseTheBalance() {
         Account account = new Account();
-        account.setBalance(account.getBalance() + 100);
+        account.addBalance(100);
     	assertThat(account.getBalance()).isEqualTo(100);
     }
+
+    @Test
+    public void transferAmountBetweenAccounts() {
+        Account sourceAccount = new Account();
+        Account targetAccount = new Account();
+        sourceAccount.setBalance(150);
+        sourceAccount.transferFunds(targetAccount, 150);
+    	assertThat(sourceAccount.getBalance()).isEqualTo(0);
+    	assertThat(targetAccount.getBalance()).isEqualTo(150);
+    }
+
 }
